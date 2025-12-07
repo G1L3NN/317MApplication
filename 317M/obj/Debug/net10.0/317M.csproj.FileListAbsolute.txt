@@ -1,0 +1,14 @@
+C:\Users\glenn\RiderProjects\317M\317M\bin\Debug\net10.0\317M.exe
+C:\Users\glenn\RiderProjects\317M\317M\bin\Debug\net10.0\317M.deps.json
+C:\Users\glenn\RiderProjects\317M\317M\bin\Debug\net10.0\317M.runtimeconfig.json
+C:\Users\glenn\RiderProjects\317M\317M\bin\Debug\net10.0\317M.dll
+C:\Users\glenn\RiderProjects\317M\317M\bin\Debug\net10.0\317M.pdb
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\317M.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\317M.AssemblyInfoInputs.cache
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\317M.AssemblyInfo.cs
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\317M.csproj.CoreCompileInputs.cache
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\317M.dll
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\refint\317M.dll
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\317M.pdb
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\317M.genruntimeconfig.cache
+C:\Users\glenn\RiderProjects\317M\317M\obj\Debug\net10.0\ref\317M.dll
