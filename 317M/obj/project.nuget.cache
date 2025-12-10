@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "v4FzU/n7kQc=",
+  "dgSpecHash": "1B9QOkw9SH8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\glenn\\RiderProjects\\317M\\317M\\317M.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\bfiecg\\RiderProjects\\317MApplication\\317M\\317M.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\bfiecg\\.nuget\\packages\\spectre.console\\0.54.0\\spectre.console.0.54.0.nupkg.sha512"
+  ],
   "logs": []
 }
