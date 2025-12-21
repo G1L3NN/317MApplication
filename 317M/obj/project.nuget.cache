@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1B9QOkw9SH8=",
+  "dgSpecHash": "Z285He+Boic=",
   "success": true,
-  "projectFilePath": "C:\\Users\\bfiecg\\RiderProjects\\317MApplication\\317M\\317M.csproj",
+  "projectFilePath": "C:\\Users\\glenn\\RiderProjects\\317MApplicationNoColor\\317M\\317M.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\bfiecg\\.nuget\\packages\\spectre.console\\0.54.0\\spectre.console.0.54.0.nupkg.sha512"
+    "C:\\Users\\glenn\\.nuget\\packages\\spectre.console\\0.54.0\\spectre.console.0.54.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -17,6 +17,7 @@ class Program
 
     static void Main(string[] args)
     {
+        Console.BufferHeight = 60;
         Console.ForegroundColor = ConsoleColor.Blue;
 
         Console.SetCursorPosition(0, 0);
@@ -67,5 +68,13 @@ class Program
             }
             Thread.Sleep(1000);
         }
+    }
+
+    public static void redaw()
+    {
+        Console.Clear();
+        Console.WriteLine(_artWork.Art);
+
+        
     }
 }

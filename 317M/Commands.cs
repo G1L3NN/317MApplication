@@ -3,10 +3,13 @@ using Spectre.Console;
 
 public class Commands
 {
-    private Table table = new Table();
+    private ConsoleColor[] colors = (ConsoleColor[])Enum.GetValues(typeof(ConsoleColor));
+    private int startZeile = 18;
+    private int MaxHeight;
+    private int MaxGebrauch;
     public void commandline()
     {
-        table.Border(TableBorder.Square);
+       
         
         var Commandline = Console.ReadLine();
         
@@ -35,6 +38,45 @@ public class Commands
                 Thread.Sleep(3000);
                 ClearCommandArea();
                 break;
+            
+            case "/color":
+                MaxHeight = Console.WindowHeight - 2;
+                MaxGebrauch = MaxHeight - startZeile;
+                Console.WriteLine(" Verfügbare Farben: ");
+
+
+                for (int i = 0; i < Math.Min(colors.Length, MaxGebrauch); i++)
+                {
+                    Console.SetCursorPosition(0, startZeile + i);
+                    Console.ForegroundColor = colors[i];
+                    Console.WriteLine($"{i + 1}. {colors[i]}");
+                }
+
+                // Hinweis wenn nicht alle angezeigt werden
+                if (colors.Length > MaxGebrauch)
+                {
+                    Console.SetCursorPosition(0, MaxHeight);
+                    Console.WriteLine($"... und {colors.Length - MaxGebrauch} weitere");
+                }
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+
+                string colorInput = Console.ReadLine();
+                if (int.TryParse(colorInput, out int answer) && answer >= 1 && answer <= colors.Length)
+                {
+                    Console.ForegroundColor = colors[answer - 1];
+                    Program.redaw();
+                    
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Not a valid input!");
+                    Console.ResetColor();
+                    Program.redaw();
+                }
+                break;
+            
             default:
                 Console.WriteLine("Not a valid input");
                 Thread.Sleep(3000);
@@ -62,7 +104,7 @@ public class Commands
     }
     private void ClearCommandArea()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
             Console.SetCursorPosition(0, 16 + i);
             Console.Write(new string(' ', Console.WindowWidth - 1)); // Minus eins, weil sonst eins zu viel Replaced.
