@@ -1,4 +1,5 @@
 ﻿namespace _317M;
+
 using Spectre.Console;
 
 public class Commands
@@ -7,12 +8,14 @@ public class Commands
     private int startZeile = 18;
     private int MaxHeight;
     private int MaxGebrauch;
+    int startLine = 16;
+    int bufferHeight = Console.BufferHeight;
+    int width = Console.WindowWidth;
+
     public void commandline()
     {
-       
-        
         var Commandline = Console.ReadLine();
-        
+
         switch (Commandline)
         {
             case "/UTC":
@@ -20,9 +23,8 @@ public class Commands
                 string utcinput = Console.ReadLine();
                 if (int.TryParse(utcinput, out var utcint) && (utcint >= -12 && utcint <= 14))
                 {
-                    Program.yourUTC = utcint;
+                    Program.user.UTC = utcint;
                     ClearCommandArea();
-
                 }
                 else
                 {
@@ -32,13 +34,14 @@ public class Commands
                     Thread.Sleep(3000);
                     ClearCommandArea();
                 }
+
                 break;
             case "/help":
-                Console.WriteLine("mit /UTC kannst du die Uhrzeit anpassen");
+                Console.WriteLine("mit /UTC kannst du die Uhrzeit anpassen und mit /color die Farbe");
                 Thread.Sleep(3000);
                 ClearCommandArea();
                 break;
-            
+
             case "/color":
                 MaxHeight = Console.WindowHeight - 2;
                 MaxGebrauch = MaxHeight - startZeile;
@@ -66,7 +69,6 @@ public class Commands
                 {
                     Console.ForegroundColor = colors[answer - 1];
                     Program.redaw();
-                    
                 }
                 else
                 {
@@ -75,8 +77,9 @@ public class Commands
                     Console.ResetColor();
                     Program.redaw();
                 }
+
                 break;
-            
+
             default:
                 Console.WriteLine("Not a valid input");
                 Thread.Sleep(3000);
@@ -102,12 +105,14 @@ public class Commands
 
         return utctodisply;
     }
+
     private void ClearCommandArea()
     {
-        for (int i = 0; i < 20; i++)
+        for (int line = startLine; line < bufferHeight; line++)
         {
-            Console.SetCursorPosition(0, 16 + i);
-            Console.Write(new string(' ', Console.WindowWidth - 1)); // Minus eins, weil sonst eins zu viel Replaced.
+            Console.SetCursorPosition(0, line);
+            Console.Write(new string(' ', Math.Max(0, width - 1))); //Erstellt einen String der so Gross
+            //wie das Fenster ist oder 0.
         }
     }
 }

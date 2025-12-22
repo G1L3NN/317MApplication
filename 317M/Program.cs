@@ -2,22 +2,23 @@
 using Spectre.Console;
 
 namespace _317M;
+using System.Text.Json;
 
 class Program
 {
+    public static User user = JsonSerializer.Deserialize<User>(File.ReadAllText("userData.json"));
     private static List<int> numstodisplay = new List<int>();
     private static ASCIINumbers numbers = new ASCIINumbers();
     private static ArtWork _artWork = new ArtWork();
     private static Commands commandline = new Commands();
     private static bool isUsed = false;
     private static string time;
-    public static int yourUTC = 1;
     private static Table uhrtabel = new Table();
     private static readonly object lockObject = new object();
 
     static void Main(string[] args)
     {
-        Console.BufferHeight = 60;
+        // Console.BufferHeight = 60;
         Console.ForegroundColor = ConsoleColor.Blue;
 
         Console.SetCursorPosition(0, 0);
@@ -44,7 +45,7 @@ class Program
 
             lock (lockObject)
             {
-                numstodisplay = commandline.getUTC(yourUTC);
+                numstodisplay = commandline.getUTC(user.UTC);
             }
             
             Console.SetCursorPosition(0, 10);
@@ -77,4 +78,5 @@ class Program
 
         
     }
+    
 }
