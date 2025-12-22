@@ -19,8 +19,9 @@ class Program
     static void Main(string[] args)
     {
         // Console.BufferHeight = 60;
-        Console.ForegroundColor = ConsoleColor.Blue;
-
+        Console.ForegroundColor = Commands.colors[user.PreferdColor];
+        Commands.updateLable();
+        
         Console.SetCursorPosition(0, 0);
         Console.WriteLine(_artWork.Art);
 
@@ -53,7 +54,14 @@ class Program
             for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine(
-                    $"{numbers.GetNumbers()[numstodisplay[0]][i]} {numbers.GetNumbers()[numstodisplay[1]][i]} {numbers.GetNumbers()[10][i]} {numbers.GetNumbers()[numstodisplay[2]][i]} {numbers.GetNumbers()[numstodisplay[3]][i]}");
+                    $"{numbers.GetNumbers()[numstodisplay[0]][i]} " +
+                    $"{numbers.GetNumbers()[numstodisplay[1]][i]} " +
+                    $"{numbers.GetNumbers()[10][i]} " +
+                    $"{numbers.GetNumbers()[numstodisplay[2]][i]} " +
+                    $"{numbers.GetNumbers()[numstodisplay[3]][i]}"  +
+                    $"{numbers.GetNumbers()[10][i]} " +
+                    $"{numbers.GetNumbers()[numstodisplay[4]][i]} " +
+                    $"{numbers.GetNumbers()[numstodisplay[5]][i]} ");
             }
 
             numstodisplay.Clear();
@@ -75,8 +83,11 @@ class Program
     {
         Console.Clear();
         Console.WriteLine(_artWork.Art);
+        Commands.updateLable();
 
         
     }
+
+    
     
 }

@@ -1,14 +1,16 @@
 ﻿namespace _317M;
+using System.Text.Json;
+
 
 using Spectre.Console;
 
 public class Commands
 {
-    private ConsoleColor[] colors = (ConsoleColor[])Enum.GetValues(typeof(ConsoleColor));
+    public static readonly ConsoleColor[] colors = (ConsoleColor[])Enum.GetValues(typeof(ConsoleColor));
     private int startZeile = 18;
     private int MaxHeight;
     private int MaxGebrauch;
-    int startLine = 16;
+    static int startLine = 16;
     int bufferHeight = Console.BufferHeight;
     int width = Console.WindowWidth;
 
@@ -16,14 +18,16 @@ public class Commands
     {
         var Commandline = Console.ReadLine();
 
-        switch (Commandline)
+        switch (Commandline.Trim().ToLower())
         {
-            case "/UTC":
+            case "/utc":
                 Console.WriteLine("Gib bitte eine Ganzzahl ein: ");
                 string utcinput = Console.ReadLine();
                 if (int.TryParse(utcinput, out var utcint) && (utcint >= -12 && utcint <= 14))
                 {
                     Program.user.UTC = utcint;
+                    SaverUser();
+                    updateLable();
                     ClearCommandArea();
                 }
                 else
@@ -52,7 +56,7 @@ public class Commands
                 {
                     Console.SetCursorPosition(0, startZeile + i);
                     Console.ForegroundColor = colors[i];
-                    Console.WriteLine($"{i + 1}. {colors[i]}");
+                    Console.WriteLine($"{i+1}. {colors[i]}");
                 }
 
                 // Hinweis wenn nicht alle angezeigt werden
@@ -62,12 +66,14 @@ public class Commands
                     Console.WriteLine($"... und {colors.Length - MaxGebrauch} weitere");
                 }
 
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = colors[Program.user.PreferdColor];
 
                 string colorInput = Console.ReadLine();
                 if (int.TryParse(colorInput, out int answer) && answer >= 1 && answer <= colors.Length)
                 {
                     Console.ForegroundColor = colors[answer - 1];
+                    Program.user.PreferdColor = answer - 1;
+                    SaverUser();
                     Program.redaw();
                 }
                 else
@@ -92,7 +98,7 @@ public class Commands
     {
         List<int> utctodisply = new List<int>();
 
-        string utc = DateTime.UtcNow.AddHours(UTC).ToString("HH:mm");
+        string utc = DateTime.UtcNow.AddHours(UTC).ToString("HH:mm:ss");
 
 
         foreach (var number in utc)
@@ -114,5 +120,22 @@ public class Commands
             Console.Write(new string(' ', Math.Max(0, width - 1))); //Erstellt einen String der so Gross
             //wie das Fenster ist oder 0.
         }
+    }
+
+    private static void SaverUser()
+    {
+        string json = JsonSerializer.Serialize(Program.user, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+        File.WriteAllText("userData.json", json);
+    }
+    
+    public static void updateLable()
+    {
+        Console.SetCursorPosition(0,8);
+        Console.Write($"Your UTC currently: " + Program.user.UTC);
+        Console.SetCursorPosition(0, startLine);
+
     }
 }
