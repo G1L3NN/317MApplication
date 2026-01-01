@@ -1,5 +1,6 @@
 ﻿namespace _317M;
 using System.Text.Json;
+using System.Linq;
 
 
 using Spectre.Console;
@@ -12,7 +13,7 @@ public class Commands
     private int MaxGebrauch;
     static int startLine = 16;
     int bufferHeight = Console.BufferHeight;
-    int width = Console.WindowWidth;
+    private static int width = Console.WindowWidth;
 
     public void commandline()
     {
@@ -118,7 +119,7 @@ public class Commands
         {
             Console.SetCursorPosition(0, line);
             Console.Write(new string(' ', Math.Max(0, width - 1))); //Erstellt einen String der so Gross
-            //wie das Fenster ist oder 0.
+                                                                            //wie das Fenster ist oder 0.
         }
     }
 
@@ -133,8 +134,31 @@ public class Commands
     
     public static void updateLable()
     {
+        string country = "Country not found";
+        string sing = "+";
+
+        if (Program.user.UTC > 0)
+        {
+            sing = "+";
+        }
+        else
+        {
+            sing = "";
+        }
+
+        foreach (var c in Program.usercoutrytimename.countries)
+        {
+            if (c.timezone_offset == Program.user.UTC)
+            {
+                country = c.name;
+                break;
+            }
+        }
+        
         Console.SetCursorPosition(0,8);
-        Console.Write($"Your UTC currently: " + Program.user.UTC);
+        Console.Write(new string(' ', Math.Max(0, width - 1)));
+        Console.SetCursorPosition(0,8);
+        Console.Write($"Your are in: " + country +" UTC: " + sing + Program.user.UTC);
         Console.SetCursorPosition(0, startLine);
 
     }

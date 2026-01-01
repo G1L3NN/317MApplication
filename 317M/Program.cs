@@ -7,6 +7,7 @@ using System.Text.Json;
 class Program
 {
     public static User user = JsonSerializer.Deserialize<User>(File.ReadAllText("userData.json"));
+    public static Root usercoutrytimename = JsonSerializer.Deserialize<Root>(File.ReadAllText("utcZones.json"));
     private static List<int> numstodisplay = new List<int>();
     private static ASCIINumbers numbers = new ASCIINumbers();
     private static ArtWork _artWork = new ArtWork();
@@ -47,6 +48,7 @@ class Program
             lock (lockObject)
             {
                 numstodisplay = commandline.getUTC(user.UTC);
+                
             }
             
             Console.SetCursorPosition(0, 10);
