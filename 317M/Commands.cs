@@ -35,7 +35,7 @@ public class Commands
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Not a vialid Input");
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = colors[Program.user.PreferdColor];
                     Thread.Sleep(3000);
                     ClearCommandArea();
                 }
