@@ -13,6 +13,6 @@ _________ .__                 __
 
      public string Art
      {
-         get => art;
+         get => art;// Neue get Methode in C#
      }
 }
