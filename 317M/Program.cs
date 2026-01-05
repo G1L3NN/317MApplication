@@ -1,27 +1,21 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using Spectre.Console;
-
-namespace _317M;
+﻿namespace _317M;
 using System.Text.Json;
 
 class Program
 {
-    public static User user = JsonSerializer.Deserialize<User>(File.ReadAllText("userData.json"));
-    public static Root usercoutrytimename = JsonSerializer.Deserialize<Root>(File.ReadAllText("utcZones.json"));
-    private static List<int> numstodisplay = new List<int>();
-    private static ASCIINumbers numbers = new ASCIINumbers();
+    public static readonly User User = JsonSerializer.Deserialize<User>(File.ReadAllText("userData.json"));
+    public static readonly Root Usercoutrytimename = JsonSerializer.Deserialize<Root>(File.ReadAllText("utcZones.json"));
+    private static List<int> _numstodisplay = new List<int>();
+    private static AsciiNumbers _numbers = new AsciiNumbers();
     private static ArtWork _artWork = new ArtWork();
-    private static Commands commandline = new Commands();
-    private static bool isUsed = false;
+    private static Commands _commandline = new Commands();
     private static string time;
-    private static Table uhrtabel = new Table();
     private static readonly object lockObject = new object();
-
+    
     static void Main(string[] args)
     {
-        // Console.BufferHeight = 60;
-        Console.ForegroundColor = Commands.colors[user.PreferdColor];
-        Commands.updateLable();
+        Console.ForegroundColor = Commands.Colors[User.PreferdColor];
+        Commands.UpdateLable();
         
         Console.SetCursorPosition(0, 0);
         Console.WriteLine(_artWork.Art);
@@ -34,7 +28,7 @@ class Program
         {
             Console.SetCursorPosition(0, 16);
             Console.Write(">");
-            commandline.commandline();
+            _commandline.Commandline();
         }
     }
 
@@ -47,7 +41,7 @@ class Program
 
             lock (lockObject)
             {
-                numstodisplay = commandline.getUTC(user.UTC);
+                _numstodisplay = _commandline.GetUtc(User.UTC);
                 
             }
             
@@ -56,17 +50,17 @@ class Program
             for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine(
-                    $"{numbers.GetNumbers()[numstodisplay[0]][i]} " +
-                    $"{numbers.GetNumbers()[numstodisplay[1]][i]} " +
-                    $"{numbers.GetNumbers()[10][i]} " +
-                    $"{numbers.GetNumbers()[numstodisplay[2]][i]} " +
-                    $"{numbers.GetNumbers()[numstodisplay[3]][i]}"  +
-                    $"{numbers.GetNumbers()[10][i]} " +
-                    $"{numbers.GetNumbers()[numstodisplay[4]][i]} " +
-                    $"{numbers.GetNumbers()[numstodisplay[5]][i]} ");
+                    $"{_numbers.GetNumbers()[_numstodisplay[0]][i]} " +
+                    $"{_numbers.GetNumbers()[_numstodisplay[1]][i]} " +
+                    $"{_numbers.GetNumbers()[10][i]} " +
+                    $"{_numbers.GetNumbers()[_numstodisplay[2]][i]} " +
+                    $"{_numbers.GetNumbers()[_numstodisplay[3]][i]}"  +
+                    $"{_numbers.GetNumbers()[10][i]} " +
+                    $"{_numbers.GetNumbers()[_numstodisplay[4]][i]} " +
+                    $"{_numbers.GetNumbers()[_numstodisplay[5]][i]} ");
             }
 
-            numstodisplay.Clear();
+            _numstodisplay.Clear();
 
             try
             {
@@ -81,11 +75,11 @@ class Program
         }
     }
 
-    public static void redaw()
+    public static void Redaw()
     {
         Console.Clear();
         Console.WriteLine(_artWork.Art);
-        Commands.updateLable();
+        Commands.UpdateLable();
 
         
     }

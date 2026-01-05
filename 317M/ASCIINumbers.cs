@@ -1,8 +1,8 @@
 ﻿namespace _317M;
 
-public class ASCIINumbers
+public class AsciiNumbers
 {
-    private static string[] zero =
+    private static readonly string[] Zero =
     {
         " ### ",
         "#   #",
@@ -11,7 +11,7 @@ public class ASCIINumbers
         " ### "
     };
 
-    private static string[] one =
+    private static readonly string[] One =
     {
         "  #  ",
         "# #  ",
@@ -20,7 +20,7 @@ public class ASCIINumbers
         " ### "
     };
 
-    private static string[] two =
+    private static readonly string[] Two =
     {
         " ### ",
         "#   #",
@@ -29,7 +29,7 @@ public class ASCIINumbers
         "#####"
     };
 
-    private static string[] three =
+    private static readonly string[] Three =
     {
         " ### ",
         "    #",
@@ -38,7 +38,7 @@ public class ASCIINumbers
         " ### "
     };
 
-    private static string[] four =
+    private static readonly string[] Four =
     {
         "#   #",
         "#   #",
@@ -47,7 +47,7 @@ public class ASCIINumbers
         "    #"
     };
 
-    private static string[] five =
+    private static readonly string[] Five =
     {
         "#####",
         "#    ",
@@ -56,7 +56,7 @@ public class ASCIINumbers
         "#### "
     };
 
-    private static string[] six =
+    private static readonly string[] Six =
     {
         " ### ",
         "#    ",
@@ -65,7 +65,7 @@ public class ASCIINumbers
         " ### "
     };
 
-    private static string[] seven =
+    private static readonly string[] Seven =
     {
         "#####",
         "    #",
@@ -74,7 +74,7 @@ public class ASCIINumbers
         "#    "
     };
 
-    private static string[] eight =
+    private static readonly string[] Eight =
     {
         " ### ",
         "#   #",
@@ -83,7 +83,7 @@ public class ASCIINumbers
         " ### "
     };
 
-    private static string[] nine =
+    private static readonly string[] Nine =
     {
         " ### ",
         "#   #",
@@ -92,7 +92,7 @@ public class ASCIINumbers
         " ### "
     };
 
-    private static string[] semicolon =
+    private static readonly string[] Semicolon =
     {
         " ### ",
         " ### ",
@@ -102,7 +102,7 @@ public class ASCIINumbers
     };
 
 
-    private static string[][] Number = { zero, one, two, three, four, five, six, seven, eight, nine, semicolon };
+    private static readonly string[][] Number = { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Semicolon };
 
 
     public string[][] GetNumbers()

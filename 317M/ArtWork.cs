@@ -2,7 +2,7 @@
 
 public class ArtWork
 {
-    string art = @"
+    readonly string _art = @"
 _________ .__                 __    
 \_   ___ \|  |   ____   ____ |  | __
 /    \  \/|  |  /  _ \_/ ___\|  |/ /
@@ -13,6 +13,6 @@ _________ .__                 __
 
      public string Art
      {
-         get => art;// Neue get Methode in C#
+         get => _art;// Neue get Methode in C#
      }
 }
