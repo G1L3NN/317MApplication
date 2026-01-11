@@ -102,7 +102,8 @@ public class AsciiNumbers
     };
 
 
-    private static readonly string[][] Number = { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Semicolon };
+    private static readonly string[][] Number =
+        { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Semicolon };
 
 
     public string[][] GetNumbers()

@@ -11,8 +11,8 @@ _________ .__                 __
         \/                 \/     \/
 ";
 
-     public string Art
-     {
-         get => _art;// Neue get Methode in C#
-     }
+    public string Art
+    {
+        get => _art; // Neue get Methode in C#
+    }
 }

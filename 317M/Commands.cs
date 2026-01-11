@@ -1,32 +1,31 @@
 ﻿namespace _317M;
+
 using System.Text.Json;
 using System.Linq;
-
-
 using Spectre.Console;
 
 public class Commands
 {
     public static readonly ConsoleColor[] Colors = (ConsoleColor[])Enum.GetValues(typeof(ConsoleColor));
-    private readonly int _startZeile = 18;
-    private int _maxHeight;
-    private int _maxGebrauch;
-    static readonly int StartLine = 16;
-    readonly int _bufferHeight = Console.BufferHeight;
+    private readonly int StartZeile = 18;
+    private int maxHeight;
+    private int maxGebrauch;
+    private static readonly int StartLine = 16;
+    private readonly int BufferHeight = Console.BufferHeight;
     private static int _width = Console.WindowWidth;
 
     public void Commandline()
     {
-        var commandline = Console.ReadLine();
+        var commandLine = Console.ReadLine();
 
-        switch (commandline.Trim().ToLower())
+        switch (commandLine.Trim().ToLower())
         {
             case "/utc":
                 Console.WriteLine("Gib bitte eine Ganzzahl ein: ");
                 string utcinput = Console.ReadLine();
                 if (int.TryParse(utcinput, out var utcint) && (utcint >= -12 && utcint <= 14))
                 {
-                    Program.User.UTC = utcint;
+                    Program.User.Utc = utcint;
                     SaverUser();
                     UpdateLable();
                     ClearCommandArea();
@@ -48,23 +47,23 @@ public class Commands
                 break;
 
             case "/color":
-                _maxHeight = Console.WindowHeight - 2;
-                _maxGebrauch = _maxHeight - _startZeile;
+                maxHeight = Console.WindowHeight - 2;
+                maxGebrauch = maxHeight - StartZeile;
                 Console.WriteLine(" Verfügbare Farben: ");
 
 
-                for (int i = 0; i < Math.Min(Colors.Length, _maxGebrauch); i++)
+                for (int i = 0; i < Math.Min(Colors.Length, maxGebrauch); i++)
                 {
-                    Console.SetCursorPosition(0, _startZeile + i);
+                    Console.SetCursorPosition(0, StartZeile + i);
                     Console.ForegroundColor = Colors[i];
-                    Console.WriteLine($"{i+1}. {Colors[i]}");
+                    Console.WriteLine($"{i + 1}. {Colors[i]}");
                 }
 
                 // Hinweis wenn nicht alle angezeigt werden
-                if (Colors.Length > _maxGebrauch)
+                if (Colors.Length > maxGebrauch)
                 {
-                    Console.SetCursorPosition(0, _maxHeight);
-                    Console.WriteLine($"... und {Colors.Length - _maxGebrauch} weitere");
+                    Console.SetCursorPosition(0, maxHeight);
+                    Console.WriteLine($"... und {Colors.Length - maxGebrauch} weitere");
                 }
 
                 Console.ForegroundColor = Colors[Program.User.PreferdColor];
@@ -75,14 +74,14 @@ public class Commands
                     Console.ForegroundColor = Colors[answer - 1];
                     Program.User.PreferdColor = answer - 1;
                     SaverUser();
-                    Program.Redaw();
+                    Program.Redraw();
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Not a valid input!");
-                    Console.ResetColor();
-                    Program.Redaw();
+                    Console.ForegroundColor = Colors[Program.User.PreferdColor];
+                    Program.Redraw();
                 }
 
                 break;
@@ -95,14 +94,14 @@ public class Commands
         }
     }
 
-    public List<int> GetUtc(int UTC)
+    public List<int> GetUtc(int utc)
     {
         List<int> utctodisply = new List<int>();
 
-        string utc = DateTime.UtcNow.AddHours(UTC).ToString("HH:mm:ss");
+        string utcCal = DateTime.UtcNow.AddHours(utc).ToString("HH:mm:ss");
 
 
-        foreach (var number in utc)
+        foreach (var number in utcCal)
         {
             if (char.IsDigit(number))
             {
@@ -115,11 +114,11 @@ public class Commands
 
     private void ClearCommandArea()
     {
-        for (int line = StartLine; line < _bufferHeight; line++)
+        for (int line = StartLine; line < BufferHeight; line++)
         {
             Console.SetCursorPosition(0, line);
             Console.Write(new string(' ', Math.Max(0, _width - 1))); //Erstellt einen String der so Gross
-                                                                            //wie das Fenster ist oder 0.
+            //wie das Fenster ist oder 0.
         }
     }
 
@@ -131,13 +130,13 @@ public class Commands
         });
         File.WriteAllText("userData.json", json);
     }
-    
+
     public static void UpdateLable()
     {
         string country = "Country not found";
         string sing = "+";
 
-        if (Program.User.UTC > 0)
+        if (Program.User.Utc > 0)
         {
             sing = "+";
         }
@@ -148,18 +147,17 @@ public class Commands
 
         foreach (var c in Program.Usercoutrytimename.countries)
         {
-            if (c.timezone_offset == Program.User.UTC)
+            if (c.timezone_offset == Program.User.Utc)
             {
                 country = c.name;
                 break;
             }
         }
-        
-        Console.SetCursorPosition(0,8);
-        Console.Write(new string(' ', Math.Max(0, _width - 1)));
-        Console.SetCursorPosition(0,8);
-        Console.Write($"Your are in: " + country +" UTC: " + sing + Program.User.UTC);
-        Console.SetCursorPosition(0, StartLine);
 
+        Console.SetCursorPosition(0, 8);
+        Console.Write(new string(' ', Math.Max(0, _width - 1)));
+        Console.SetCursorPosition(0, 8);
+        Console.Write($"Your are in: " + country + " UTC: " + sing + Program.User.Utc);
+        Console.SetCursorPosition(0, StartLine);
     }
 }
